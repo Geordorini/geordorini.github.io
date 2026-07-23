@@ -1,0 +1,22 @@
+{
+  "name": "lumen-compiler",
+  "version": "1.0.0",
+  "description": "A compiler for the Lumen toy language, targeting WebAssembly: lexer, parser, type checker, and a hand-written wasm binary emitter — all dependency-free.",
+  "type": "module",
+  "bin": {
+    "lumc": "bin/lumc.js"
+  },
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "scripts": {
+    "test": "node test/run.js",
+    "example": "node bin/lumc.js examples/fib.lum --run fib 20"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": ["compiler", "webassembly", "wasm", "language", "type-checker", "lexer", "parser"],
+  "license": "MIT"
+}

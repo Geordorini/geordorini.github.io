@@ -1,0 +1,45 @@
+// math.lum — floating point and integer numeric routines.
+
+let PI = 3.141592653589793;
+
+// Area of a circle: PI * r^2  (uses a const global).
+export fn circleArea(r: float): float {
+  return PI * r * r;
+}
+
+// Integer power via repeated multiplication.
+export fn ipow(base: int, exp: int): int {
+  let mut result = 1;
+  let mut i = 0;
+  while (i < exp) {
+    result = result * base;
+    i = i + 1;
+  }
+  return result;
+}
+
+// Newton's method for square root of a float.
+export fn sqrt(x: float): float {
+  if (x <= 0.0) {
+    return 0.0;
+  }
+  let mut guess = x;
+  let mut i = 0;
+  while (i < 20) {
+    guess = (guess + x / guess) / 2.0;
+    i = i + 1;
+  }
+  return guess;
+}
+
+// Greatest common divisor (Euclid).
+export fn gcd(a: int, b: int): int {
+  let mut x = a;
+  let mut y = b;
+  while (y != 0) {
+    let t = y;
+    y = x % y;
+    x = t;
+  }
+  return x;
+}

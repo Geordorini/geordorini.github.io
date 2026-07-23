@@ -1,0 +1,32 @@
+// primes.lum — primality testing and counting, with a host import.
+
+// The host must provide `env.print` (called with each prime found).
+extern fn print(x: int): void;
+
+export fn isPrime(n: int): bool {
+  if (n < 2) {
+    return false;
+  }
+  let mut i = 2;
+  while (i * i <= n) {
+    if (n % i == 0) {
+      return false;
+    }
+    i = i + 1;
+  }
+  return true;
+}
+
+// Count primes below `limit`, printing each one via the host.
+export fn countPrimes(limit: int): int {
+  let mut count = 0;
+  let mut n = 2;
+  while (n < limit) {
+    if (isPrime(n)) {
+      print(n);
+      count = count + 1;
+    }
+    n = n + 1;
+  }
+  return count;
+}

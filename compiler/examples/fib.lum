@@ -1,0 +1,23 @@
+// fib.lum — recursive and iterative Fibonacci in Lumen.
+
+// Classic exponential recursion.
+export fn fib(n: int): int {
+  if (n < 2) {
+    return n;
+  }
+  return fib(n - 1) + fib(n - 2);
+}
+
+// Linear-time iterative version using a while loop and mutable locals.
+export fn fibFast(n: int): int {
+  let mut a = 0;
+  let mut b = 1;
+  let mut i = 0;
+  while (i < n) {
+    let next = a + b;
+    a = b;
+    b = next;
+    i = i + 1;
+  }
+  return a;
+}
