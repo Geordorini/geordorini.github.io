@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Xander Dukas</title>
+<meta name="description" content="Mechanical design portfolio of Xander Dukas: Drover V4 and V5 competition drone for the University Rover Challenge, machined valve work, and RxManager.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg:        #0a0e14;
+    --bg-soft:   #11161f;
+    --line:      #1e2733;
+    --ink:       #e6edf3;
+    --ink-dim:   #7d8896;
+    --accent:    #ff9f43;
+    --accent-dim:#5a4226;
+    --mono: 'Space Mono', ui-monospace, monospace;
+    --serif: 'Newsreader', Georgia, serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 32px 32px;
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  .label {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+
+  /* ---------- HEADER ---------- */
+  header {
+    padding: 72px 0 48px;
+    border-bottom: 1px solid var(--line);
+    opacity: 0; animation: rise .7s ease forwards;
+  }
+  .back { font-family: var(--mono); font-size: 13px; display: inline-block; margin-bottom: 28px; }
+  .header-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    border: 1px solid var(--accent-dim);
+    padding: 4px 10px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(38px, 7vw, 60px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+  h1 .accent { color: var(--accent); }
+  .tagline { margin-top: 18px; font-size: 20px; color: var(--ink-dim); max-width: 54ch; }
+  .jump { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 8px 22px; font-family: var(--mono); font-size: 13px; }
+  .jump a { color: var(--ink); }
+  .jump a:hover { color: var(--accent); }
+
+  /* ---------- SECTIONS ---------- */
+  section { padding: 56px 0; border-bottom: 1px solid var(--line); }
+  .section-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 28px; }
+  .section-head h2 { font-family: var(--serif); font-weight: 500; font-size: 28px; letter-spacing: -0.01em; }
+  .section-head .num { font-family: var(--mono); font-size: 13px; color: var(--accent); }
+
+  h3.sub { font-family: var(--serif); font-weight: 500; font-size: 22px; margin: 40px 0 6px; }
+  h3.sub .ver { font-family: var(--mono); font-size: 12px; color: var(--accent); letter-spacing: 0.1em; margin-right: 8px; }
+  .sub-meta { font-family: var(--mono); font-size: 12px; color: var(--ink-dim); margin-bottom: 14px; }
+
+  p { color: var(--ink-dim); font-size: 17px; margin-bottom: 14px; }
+  p strong { color: var(--ink); font-weight: 500; }
+
+  /* ---------- SPEC TABLE ---------- */
+  .specs {
+    display: grid;
+    grid-template-columns: 170px 1fr;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: var(--bg-soft);
+    margin: 24px 0 8px;
+    font-size: 15px;
+  }
+  .specs dt, .specs dd { padding: 10px 16px; border-top: 1px solid var(--line); }
+  .specs dt:first-of-type, .specs dd:first-of-type { border-top: 0; }
+  .specs dt { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-dim); padding-top: 13px; }
+  .specs dd { color: var(--ink); }
+
+  /* ---------- FIGURES ---------- */
+  figure { margin: 22px 0 8px; }
+  figure img, figure svg {
+    display: block; width: 100%; height: auto;
+    border: 1px solid var(--line); border-radius: 4px; background: var(--bg-soft);
+  }
+  figure img.light { background: #fff; }
+  figcaption { font-family: var(--mono); font-size: 12px; color: var(--ink-dim); margin-top: 10px; line-height: 1.5; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+  .pair figure { margin: 22px 0 8px; }
+
+  .chips { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    font-family: var(--mono); font-size: 11px; color: var(--ink);
+    background: #0a0e14; border: 1px solid var(--line); padding: 3px 8px; border-radius: 2px;
+  }
+
+  .status {
+    display: inline-block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+    color: var(--accent); border: 1px solid var(--accent-dim); padding: 2px 8px; border-radius: 2px; margin-left: 10px;
+    vertical-align: middle;
+  }
+
+  .note {
+    border-left: 2px solid var(--accent-dim); padding: 4px 0 4px 16px; margin: 18px 0;
+    color: var(--ink-dim); font-size: 15px;
+  }
+
+  /* ---------- schematic ---------- */
+  .schem .rotor { fill: none; stroke: var(--accent); stroke-width: 1.5; stroke-dasharray: 5 4; }
+  .schem .arm   { stroke: var(--ink-dim); stroke-width: 3; stroke-linecap: round; }
+  .schem .body  { fill: var(--bg); stroke: var(--ink); stroke-width: 1.5; }
+  .schem .hub   { fill: var(--accent); }
+  .schem text   { font-family: var(--mono); fill: var(--ink-dim); font-size: 11px; }
+  .schem .t-main { fill: var(--ink); font-size: 12px; }
+  .schem .dim   { stroke: var(--ink-dim); stroke-width: 1; }
+
+  footer { padding: 48px 0 80px; font-family: var(--mono); font-size: 13px; color: var(--ink-dim); }
+
+  @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal { opacity: 0; }
+  .reveal.in { animation: rise .6s ease forwards; }
+
+  @media (max-width: 620px) {
+    .pair { grid-template-columns: 1fr; }
+    .specs { grid-template-columns: 1fr; }
+    .specs dt { border-top: 1px solid var(--line); padding-bottom: 0; }
+    .specs dt:first-of-type { border-top: 0; }
+    .specs dd { border-top: 0; padding-top: 4px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, header, .reveal { animation: none !important; opacity: 1 !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <a class="back" href="index.html">← xander dukas</a><br>
+    <span class="header-tag">// PORTFOLIO</span>
+    <h1>Design work,<br><span class="accent">in metal and carbon.</span></h1>
+    <p class="tagline">
+      A competition drone I'm leading the mechanical design of, a valve I designed
+      and had machined, and an IoT pill dispenser.
+    </p>
+    <div class="jump">
+      <a href="#drover">01 Drover</a>
+      <a href="#valve">02 Master valve</a>
+      <a href="#rxmanager">03 RxManager</a>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       01  DROVER
+       ============================================================ -->
+  <section id="drover">
+    <div class="section-head"><span class="num">01</span><h2>Drover — Competition Drone</h2></div>
+
+    <p>
+      Drover is the aerial scouting drone for Northeastern's entry in the
+      <strong>University Rover Challenge</strong>, built by the drone subteam as a
+      collaboration between <strong>AeroNU</strong> and the Mars Rover team. It flies ahead of the
+      rover to scout the terrain, so the rover spends less of its limited mission time
+      finding a route. This year the rules may also allow the drone to drop off a payload.
+    </p>
+    <p>
+      The constraint that shapes every decision: <strong>5 kg maximum weight</strong>, and the drone
+      must carry a dummy weight equal to the mass of its batteries. The airframe has to be
+      extremely mass-efficient.
+    </p>
+
+    <dl class="specs">
+      <dt>My role</dt><dd>Co-Mechanical Lead, drone subteam</dd>
+      <dt>Competition</dt><dd>University Rover Challenge</dd>
+      <dt>Mass limit</dt><dd>5 kg, plus a dummy mass equal to the battery mass</dd>
+      <dt>Team result</dt><dd>6th overall last season (whole-team result, not drone-specific)</dd>
+    </dl>
+
+    <!-- V4 -->
+    <h3 class="sub"><span class="ver">V4</span>Quadcopter, with a caged dummy mass</h3>
+    <div class="sub-meta">QUAD · 4 × 17.1 IN PROPS · CARBON FIBER + 3D-PRINTED PARTS</div>
+
+    <p>
+      V4 is a quadcopter built on an X frame of two carbon fiber rods and a carbon fiber
+      plate, with a large number of 3D-printed parts that hold the GPS antenna and the
+      dummy weight.
+    </p>
+    <p>
+      My part was the <strong>cage for the dummy weight</strong>. An earlier version of the
+      cage let the mass oscillate during flight. For V4 I designed the cage to a
+      <strong>tight fit</strong>, so the weight is rigidly tied to the frame and has no room to move.
+      V4 did not show the oscillation we saw before. I checked the fit by hand, shaking the
+      assembled cage to confirm the mass stayed put.
+    </p>
+
+    <div class="pair">
+      <figure class="reveal">
+        <img class="light" src="images/drover-v4-cad.jpg" alt="CAD render of Drover V4 showing four props with guard rings, carbon rod arms, and the cage under the center body" loading="lazy">
+        <figcaption>Drover V4, CAD. Cage for the dummy mass under the center body.</figcaption>
+      </figure>
+      <figure class="reveal">
+        <img src="images/drover-v4-assembled.jpg" alt="Assembled Drover V4 on grass, showing carbon fiber arms, four propellers, and the center plate" loading="lazy">
+        <figcaption>Drover V4, assembled for testing.</figcaption>
+      </figure>
+    </div>
+
+    <div class="chips">
+      <span class="chip">CAD</span><span class="chip">Carbon fiber</span>
+      <span class="chip">3D printing</span><span class="chip">Tolerancing</span>
+    </div>
+
+    <!-- V5 -->
+    <h3 class="sub"><span class="ver">V5</span>Bicopter <span class="status">IN PROGRESS</span></h3>
+    <div class="sub-meta">BICOPTER · 24 IN PROPS · CAD UNDERWAY</div>
+
+    <p>
+      For V5 we are being bold and moving off the quadcopter layout to a
+      <strong>bicopter</strong>. A bicopter uses fewer, much larger rotors. Moving from
+      17.1 in to <strong>24 in props</strong> shifts the efficiency picture, and fewer motors
+      and speed controllers means less mass to carry.
+    </p>
+    <p>
+      24 in is a deliberate stopping point. Bigger props would fit, but the motors we use have
+      manufacturer thrust test data only up to 24 in, and 24 in already gives enough thrust.
+      Going beyond it would mean designing around data we don't have.
+    </p>
+    <p>
+      The tradeoff is control: a bicopter is harder to stabilize than a standard multirotor.
+      The project started as a coaxial helicopter proof of concept and evolved into the
+      bicopter. I'm doing the mechanical CAD for V5 right now. It is not finished, so I'm
+      not showing images of it.
+    </p>
+
+    <figure class="reveal">
+      <svg class="schem" viewBox="0 0 760 290" role="img" aria-label="Schematic comparing a quadcopter with four 17.1 inch rotors to a bicopter with two 24 inch rotors, top view, rotor sizes drawn to the same scale">
+        <!-- V4 quad -->
+        <g transform="translate(190,135)">
+          <line class="arm" x1="-58" y1="-58" x2="58" y2="58"/>
+          <line class="arm" x1="58" y1="-58" x2="-58" y2="58"/>
+          <circle class="rotor" cx="-58" cy="-58" r="42.75"/>
+          <circle class="rotor" cx="58"  cy="-58" r="42.75"/>
+          <circle class="rotor" cx="-58" cy="58"  r="42.75"/>
+          <circle class="rotor" cx="58"  cy="58"  r="42.75"/>
+          <rect class="body" x="-14" y="-14" width="28" height="28" rx="3"/>
+          <circle class="hub" cx="-58" cy="-58" r="3"/>
+          <circle class="hub" cx="58"  cy="-58" r="3"/>
+          <circle class="hub" cx="-58" cy="58"  r="3"/>
+          <circle class="hub" cx="58"  cy="58"  r="3"/>
+        </g>
+        <text class="t-main" x="190" y="252" text-anchor="middle">V4 · quadcopter</text>
+        <text x="190" y="270" text-anchor="middle">4 × 17.1 in rotors</text>
+
+        <!-- V5 bicopter -->
+        <g transform="translate(570,135)">
+          <line class="arm" x1="-80" y1="0" x2="80" y2="0"/>
+          <circle class="rotor" cx="-80" cy="0" r="60"/>
+          <circle class="rotor" cx="80"  cy="0" r="60"/>
+          <rect class="body" x="-14" y="-14" width="28" height="28" rx="3"/>
+          <circle class="hub" cx="-80" cy="0" r="3"/>
+          <circle class="hub" cx="80"  cy="0" r="3"/>
+        </g>
+        <text class="t-main" x="570" y="252" text-anchor="middle">V5 · bicopter</text>
+        <text x="570" y="270" text-anchor="middle">2 × 24 in rotors</text>
+
+        <line class="dim" x1="380" y1="30" x2="380" y2="215" stroke-dasharray="2 5"/>
+      </svg>
+      <figcaption>Concept schematic, top view. Not the V5 design. Rotor diameters are drawn to the same scale in both layouts.</figcaption>
+    </figure>
+
+    <div class="chips">
+      <span class="chip">Bicopter</span><span class="chip">24 in props</span>
+      <span class="chip">CAD</span><span class="chip">Mechanical Lead</span>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       02  MASTER VALVE
+       ============================================================ -->
+  <section id="valve">
+    <div class="section-head"><span class="num">02</span><h2>Master Valve — Internship</h2></div>
+
+    <p>
+      During my summer internship at <strong>Controls Corporation of America</strong> I designed a
+      master valve and had it machined in the company's shop. Company policy means I can't
+      show the part, drawings, or specifications, so this section shows the equipment instead.
+    </p>
+    <p>
+      Along the way I became very familiar with
+      <strong>NPT (National Pipe Taper) thread standards</strong>.
+    </p>
+
+    <figure class="reveal" style="max-width:420px;">
+      <img src="images/nakamura-tome-nty3-250.jpg" alt="Nakamura-Tome NTY3-250 CNC turning center with its door open" loading="lazy">
+      <figcaption>Nakamura-Tome NTY³-250 CNC turn-mill center, used to machine the valve.</figcaption>
+    </figure>
+
+    <div class="chips">
+      <span class="chip">Design for manufacturing</span><span class="chip">CNC turning</span>
+      <span class="chip">NPT threads</span><span class="chip">CSWA</span>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       03  RXMANAGER
+       ============================================================ -->
+  <section id="rxmanager">
+    <div class="section-head"><span class="num">03</span><h2>RxManager — IoT Pill Dispenser</h2></div>
+
+    <p>
+      An IoT medication-dispensing system: ESP32 firmware talking to a Supabase backend,
+      with a Next.js dashboard for scheduling and adherence tracking.
+    </p>
+    <!-- TODO: add RxManager CAD images / captions once available -->
+
+    <div class="chips">
+      <span class="chip">ESP32</span><span class="chip">MicroPython</span>
+      <span class="chip">Next.js</span><span class="chip">Supabase</span>
+    </div>
+    <p style="margin-top:18px;font-family:var(--mono);font-size:13px;">
+      <a href="https://github.com/Geordorini/rxmanager" target="_blank" rel="noopener">repo →</a>
+    </p>
+  </section>
+
+  <footer>
+    <div class="label">© <span id="year"></span> Xander Dukas · <a href="index.html">home</a></div>
+  </footer>
+
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.style.animationDelay = (i * 60) + 'ms';
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
