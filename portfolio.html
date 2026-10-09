@@ -245,18 +245,20 @@
 
     <!-- V5 -->
     <h3 class="sub"><span class="ver">V5</span>Bicopter <span class="status">IN PROGRESS</span></h3>
-    <div class="sub-meta">BICOPTER · 24 IN PROPS · CAD UNDERWAY</div>
+    <div class="sub-meta">BICOPTER · 24 IN PROPS · CAD UNDERWAY · FLIGHT TESTING PLANNED</div>
 
     <p>
       For V5 we are being bold and moving off the quadcopter layout to a
-      <strong>bicopter</strong>. A bicopter uses fewer, much larger rotors. Moving from
-      17.1 in to <strong>24 in props</strong> shifts the efficiency picture, and fewer motors
-      and speed controllers means less mass to carry.
+      <strong>bicopter</strong>: two larger rotors instead of four smaller ones, going from
+      17.1 in to <strong>24 in props</strong>. The goal is a more efficient airframe, so the
+      same 5 kg limit can carry <strong>more battery and fly longer</strong>.
     </p>
     <p>
-      24 in is a deliberate stopping point. Bigger props would fit, but the motors we use have
-      manufacturer thrust test data only up to 24 in, and 24 in already gives enough thrust.
-      Going beyond it would mean designing around data we don't have.
+      Total rotor area stays roughly the same as the quad, so bigger isn't automatically better,
+      and we are testing it rather than assuming it. Props up to roughly 0.9 m per motor are
+      possible, but they would need different motors and a different battery configuration.
+      We have 24 in carbon fiber props on hand, so the next step is flight testing to see
+      whether the cost of going larger is worth it.
     </p>
     <p>
       The tradeoff is control: a bicopter is harder to stabilize than a standard multirotor.
@@ -344,7 +346,10 @@
       An IoT medication-dispensing system: ESP32 firmware talking to a Supabase backend,
       with a Next.js dashboard for scheduling and adherence tracking.
     </p>
-    <!-- TODO: add RxManager CAD images / captions once available -->
+    <p>
+      I wrote the firmware and the software side. The mechanical design of the dispenser was
+      done by someone else.
+    </p>
 
     <div class="chips">
       <span class="chip">ESP32</span><span class="chip">MicroPython</span>
